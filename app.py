@@ -6,6 +6,7 @@ from datetime import datetime
 from ai_prediction import predict_risk
 from cloudwatch_metrics import get_cpu_usage, get_network_in
 from streamlit_autorefresh import st_autorefresh
+from ai_advisor import generate_advice
 
 st.set_page_config(
 page_title="CloudGuard AI",
@@ -191,6 +192,11 @@ elif risk == "MEDIUM RISK":
     st.warning("Moderate resource pressure detected.")
 else:
     st.success("Infrastructure operating normally.")
+
+advice = generate_advice(cpu, memory, network)
+
+st.subheader("🧠 AI Recommendation")
+st.info(advice)
 
 # AI Analysis
 
