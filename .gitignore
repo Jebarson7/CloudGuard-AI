@@ -1,0 +1,5 @@
+venv/
+__pycache__/
+*.pyc
+aws_config.py
+.aws_credentials.txt
