@@ -1,2 +1,28 @@
-# CloudGuard-AI
-AI-Powered Cloud Operations Monitoring Dashboard built using Streamlit and Plotly.
+# CloudGuard AI
+
+CloudGuard AI is an AI-powered cloud operations monitoring dashboard built using Streamlit and Plotly.
+
+## Features
+
+- CPU Monitoring
+- Memory Monitoring
+- Network Monitoring
+- System Health Score
+- AI Risk Analysis
+- Prediction Engine
+- Alert History
+- Incident Report Generation
+- Report Download
+
+## Technologies Used
+
+- Python
+- Streamlit
+- Plotly
+- Pandas
+
+## Author
+
+Jebarson E
+Computer and Communication Engineering (CCE)
+Sri Eshwar College of Engineering
