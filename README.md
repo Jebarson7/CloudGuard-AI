@@ -21,6 +21,10 @@ CloudGuard AI is an AI-powered cloud operations monitoring dashboard built using
 - Plotly
 - Pandas
 
+## Live Demo
+
+[https://your-app-url.streamlit.app](https://cloudguard-ai-cqvxt2bjlcm6gwjoeiczsx.streamlit.app/)
+
 ## Author
 
 Jebarson E
