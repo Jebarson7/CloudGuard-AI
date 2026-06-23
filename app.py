@@ -4,15 +4,20 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 from ai_prediction import predict_risk
+from cost_optimizer import cost_advice
+from streamlit_autorefresh import st_autorefresh
+from ai_advisor import generate_advice
 from cloudwatch_metrics import (
     get_cpu_usage,
     get_network_in,
     get_cpu_history,
     get_network_history
 )
-from streamlit_autorefresh import st_autorefresh
-from ai_advisor import generate_advice
-from openrouter_ai import ask_ai
+from openrouter_ai import (
+    ask_ai,
+    cost_optimizer_ai,
+    auto_remediation_ai
+)
 
 st.set_page_config(
     page_title="CloudGuard AI",
@@ -240,7 +245,126 @@ advice = generate_advice(cpu, memory, network)
 st.subheader("🧠 AI Recommendation")
 st.info(advice)
 
+st.subheader("💰 AI Cost Optimization")
+
+if st.button("Analyze Cloud Costs"):
+
+    with st.spinner("Analyzing AWS costs..."):
+
+        cost_result = cost_optimizer_ai(
+            cpu,
+            memory,
+            network
+        )
+
+        st.success(cost_result)
+
+st.subheader("🛠 AI Auto-Remediation Engine")
+
+if st.button("Generate Recovery Plan"):
+
+    with st.spinner("Generating recovery plan..."):
+
+        recovery_plan = auto_remediation_ai(
+            cpu,
+            memory,
+            network,
+            risk
+        )
+
+        st.success(recovery_plan)
+
 # AI Analysis
+
+# Incident Simulator
+
+st.subheader("🎭 Incident Simulator")
+
+incident = st.selectbox(
+    "Select Incident",
+    [
+        "High CPU Usage",
+        "Memory Leak",
+        "Network Spike",
+        "DDoS Attack"
+    ]
+)
+
+if st.button("Simulate Incident"):
+
+    with st.spinner("Simulating incident..."):
+
+        simulation = ask_ai(
+            f"""
+        You are CloudGuard AI.
+
+        This is a SIMULATED TRAINING SCENARIO.
+
+        The incident is hypothetical and does not represent the current metrics.
+
+        Simulate a realistic AWS cloud incident: {incident}
+
+        Project Context:
+        - Monitoring AWS EC2 instances
+        - Monitoring CloudWatch metrics
+        - Using CloudGuard AI for analysis
+        - Using AWS networking metrics
+
+        Provide:
+
+        ## Impact
+        ## Root Cause
+        ## Recovery Plan
+        ## AWS Services Used
+        ## Cloud Operations Recommendation
+
+        Rules:
+        - Never invent EC2 instance IDs.
+        - Never invent resource names.
+        - Never invent account IDs.
+        - Never mention risk level.
+        - Use only standard AWS services and capabilities.
+        - Do not invent AWS features or product names.
+        - Refer to AWS WAF as a Web Application Firewall.
+        - Avoid mentioning OWASP unless specifically relevant.
+        - Generate a generic incident response report suitable for demonstration purposes.
+        - Do not invent IP addresses.
+        - Do not invent AWS regions.
+        - Do not invent timestamps.
+        - Do not mention AWS regions unless explicitly provided.
+        - Use generic AWS infrastructure descriptions.
+        - Only use information explicitly provided.
+        - Do not change the current risk level unless explicitly provided.
+        - Do not invent metric values.
+        - Keep recommendations aligned with the provided metrics.
+        - Do not invent exact numbers or statistics.
+        - Use terms like "high traffic volume", "elevated latency", "increased resource utilization".
+        - Do not invent hostnames, domains, timestamps, users, or revenue figures.
+        - Do not mention services unless they are relevant.
+        - Avoid assuming systems are compromised.
+        - Avoid recommending instance recreation unless absolutely necessary.
+        - Prefer mitigation, monitoring, filtering, and scaling actions.
+        - Keep the scenario generic.
+        - Focus on EC2, CloudWatch, Auto Scaling, WAF, Shield, and networking.
+        - Use bullet points.
+        - Keep response under 250 words.
+        """,
+            cpu,
+            memory,
+            network,
+            risk
+        )
+
+        st.success(f"Simulation Results: {incident}")
+        st.info("⚠️ This is a simulated training scenario, not a real incident.")
+        st.markdown(simulation)
+
+        st.download_button(
+            "📥 Download Incident Report",
+            data=simulation,
+            file_name="incident_report.txt",
+            mime="text/plain"
+        )
 
 st.header("🔮 Prediction")
 
