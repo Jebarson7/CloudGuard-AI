@@ -66,3 +66,61 @@ def get_network_in():
         return round(latest["Average"] / 1024, 2)
 
     return 0
+
+def get_network_history():
+
+    cloudwatch = boto3.client(
+        "cloudwatch",
+        aws_access_key_id=AWS_ACCESS_KEY,
+        aws_secret_access_key=AWS_SECRET_KEY,
+        region_name=AWS_REGION
+    )
+
+    response = cloudwatch.get_metric_statistics(
+        Namespace="AWS/EC2",
+        MetricName="NetworkIn",
+        Dimensions=[
+            {
+                "Name": "InstanceId",
+                "Value": INSTANCE_ID
+            }
+        ],
+        StartTime=datetime.utcnow() - timedelta(minutes=30),
+        EndTime=datetime.utcnow(),
+        Period=300,
+        Statistics=["Average"]
+    )
+
+    return sorted(
+        response["Datapoints"],
+        key=lambda x: x["Timestamp"]
+    )
+
+def get_cpu_history():
+
+    cloudwatch = boto3.client(
+        "cloudwatch",
+        aws_access_key_id=AWS_ACCESS_KEY,
+        aws_secret_access_key=AWS_SECRET_KEY,
+        region_name=AWS_REGION
+    )
+
+    response = cloudwatch.get_metric_statistics(
+        Namespace="AWS/EC2",
+        MetricName="CPUUtilization",
+        Dimensions=[
+            {
+                "Name": "InstanceId",
+                "Value": INSTANCE_ID
+            }
+        ],
+        StartTime=datetime.utcnow() - timedelta(minutes=30),
+        EndTime=datetime.utcnow(),
+        Period=300,
+        Statistics=["Average"]
+    )
+
+    return sorted(
+        response["Datapoints"],
+        key=lambda x: x["Timestamp"]
+    )

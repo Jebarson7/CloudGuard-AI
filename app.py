@@ -4,17 +4,29 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 from ai_prediction import predict_risk
-from cloudwatch_metrics import get_cpu_usage, get_network_in
+from cloudwatch_metrics import (
+    get_cpu_usage,
+    get_network_in,
+    get_cpu_history,
+    get_network_history
+)
 from streamlit_autorefresh import st_autorefresh
 from ai_advisor import generate_advice
+from openrouter_ai import ask_ai
 
 st.set_page_config(
-page_title="CloudGuard AI",
-page_icon="☁️",
-layout="wide"
+    page_title="CloudGuard AI",
+    page_icon="☁️",
+    layout="wide"
 )
 
-st_autorefresh(interval=5000, key="refresh")
+auto_refresh = st.sidebar.checkbox(
+    "Enable Auto Refresh",
+    value=False
+)
+
+if auto_refresh:
+    st_autorefresh(interval=10000, key="refresh")
 
 # Sidebar
 st.sidebar.title("☁️ CloudGuard AI")
@@ -53,17 +65,47 @@ df = pd.DataFrame(history)
 
 cpu = get_cpu_usage()
 
+cpu_history = get_cpu_history()
+
+cpu_df = pd.DataFrame([
+    {
+        "Time": item["Timestamp"],
+        "CPU": item["Average"]
+    }
+    for item in cpu_history
+])
+
+# ADD BELOW THE CPU BLOCK
+
+network_history = get_network_history()
+
+network_df = pd.DataFrame([
+    {
+        "Time": item["Timestamp"],
+        "Network": item["Average"] / 1024
+    }
+    for item in network_history
+])
+
 memory = df["Memory"].iloc[-1]
 
 network = get_network_in()
 
 risk = predict_risk(cpu, memory, network)
 
+network_score = min(network, 100)
+
 health_score = max(
     0,
     min(
         100,
-        int(100 - ((cpu * 0.4) + (memory * 0.4) + (network * 0.2)))
+        int(
+            100 - (
+                cpu * 0.4 +
+                memory * 0.4 +
+                network_score * 0.2
+            )
+        )
     )
 )
 
@@ -92,13 +134,13 @@ st.metric(
     f"{int(health_score)}/100"
 )
 
-st.subheader("📈 CPU Trend")
+st.subheader("📈 Real AWS CPU Trend")
 
 fig_cpu = px.line(
-    df,
+    cpu_df,
     x="Time",
     y="CPU",
-    title="CPU Usage Trend"
+    title="AWS CloudWatch CPU Usage"
 )
 
 st.plotly_chart(fig_cpu, use_container_width=True)
@@ -115,13 +157,13 @@ fig_memory = px.line(
 st.plotly_chart(fig_memory, use_container_width=True)
 
 
-st.subheader("📈 Network Trend")
+st.subheader("📈 Real AWS Network Trend")
 
 fig_network = px.line(
-    df,
+    network_df,
     x="Time",
     y="Network",
-    title="Network Usage Trend"
+    title="AWS CloudWatch Network Usage (KB)"
 )
 
 st.plotly_chart(fig_network, use_container_width=True)
@@ -226,30 +268,37 @@ for rec in recommendations:
 st.subheader("💬 Ask CloudGuard AI")
 
 question = st.text_input(
-    "Ask about your infrastructure"
+    "Ask about your infrastructure",
+    key="cloud_question"
 )
 
 if question:
 
-    if "cpu" in question.lower():
-        st.success(
-            f"Current CPU usage is {cpu}%. System risk is {risk}."
+    with st.spinner("CloudGuard AI is thinking..."):
+
+        answer = ask_ai(
+            question,
+            cpu,
+            memory,
+            network,
+            risk
         )
 
-    elif "health" in question.lower():
-        st.success(
-            f"Current Health Score is {health_score}/100."
+        st.success(answer)
+
+with st.expander("🚨 AI Incident Summary"):
+
+    if st.button("Generate Incident Summary"):
+
+        incident = ask_ai(
+            "Summarize the current infrastructure status in 3 bullet points",
+            cpu,
+            memory,
+            network,
+            risk
         )
 
-    elif "scale" in question.lower():
-        st.success(
-            "Scaling is not required currently."
-        )
-
-    else:
-        st.info(
-            "Please ask about CPU, health, or scaling."
-        )
+        st.write(incident)
 
 st.divider()
 
