@@ -173,22 +173,6 @@ fig_network = px.line(
 
 st.plotly_chart(fig_network, use_container_width=True)
 
-st.subheader("🥧 Resource Distribution")
-
-pie_df = pd.DataFrame({
-    "Resource": ["CPU", "Memory", "Network"],
-    "Usage": [cpu, memory, network]
-})
-
-pie_chart = px.pie(
-    pie_df,
-    names="Resource",
-    values="Usage",
-    title="Current Resource Usage"
-)
-
-st.plotly_chart(pie_chart, use_container_width=True)
-
 if "alerts" not in st.session_state:
     st.session_state.alerts = []
 
@@ -244,6 +228,24 @@ advice = generate_advice(cpu, memory, network)
 
 st.subheader("🧠 AI Recommendation")
 st.info(advice)
+
+st.subheader("🚨 AI Anomaly Detection")
+
+if cpu > 80:
+    st.error("⚠️ CPU Anomaly Detected")
+    st.write("Unusually high CPU utilization observed.")
+
+elif memory > 85:
+    st.error("⚠️ Memory Anomaly Detected")
+    st.write("Potential memory leak or resource exhaustion.")
+
+elif network > 1000:
+    st.error("⚠️ Network Anomaly Detected")
+    st.write("Abnormal network traffic pattern detected.")
+
+else:
+    st.success("✅ Status: Normal")
+    st.write("No unusual behavior detected.")
 
 st.subheader("💰 AI Cost Optimization")
 
