@@ -223,6 +223,34 @@ recommendations = [
 for rec in recommendations:
     st.write("✅", rec)
 
+st.subheader("💬 Ask CloudGuard AI")
+
+question = st.text_input(
+    "Ask about your infrastructure"
+)
+
+if question:
+
+    if "cpu" in question.lower():
+        st.success(
+            f"Current CPU usage is {cpu}%. System risk is {risk}."
+        )
+
+    elif "health" in question.lower():
+        st.success(
+            f"Current Health Score is {health_score}/100."
+        )
+
+    elif "scale" in question.lower():
+        st.success(
+            "Scaling is not required currently."
+        )
+
+    else:
+        st.info(
+            "Please ask about CPU, health, or scaling."
+        )
+
 st.divider()
 
 # Alert History
