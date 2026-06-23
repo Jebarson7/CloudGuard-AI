@@ -3,16 +3,14 @@
 CloudGuard AI is an AI-powered cloud operations monitoring dashboard built using Streamlit and Plotly.
 
 ## Features
-
-- CPU Monitoring
-- Memory Monitoring
-- Network Monitoring
-- System Health Score
-- AI Risk Analysis
-- Prediction Engine
-- Alert History
-- Incident Report Generation
-- Report Download
+---------
+✅ Real AWS CloudWatch CPU Monitoring
+✅ Real AWS CloudWatch Network Monitoring
+✅ AI-Powered Infrastructure Assistant
+✅ Risk Prediction Engine
+✅ Health Score Analysis
+✅ Incident Report Generation
+✅ Interactive Dashboard
 
 ## Technologies Used
 
