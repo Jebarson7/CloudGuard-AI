@@ -2,19 +2,13 @@ import boto3
 from datetime import datetime, timedelta
 
 try:
-    # Local development (VS Code)
-    from aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
+    from aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION, INSTANCE_ID
 except ModuleNotFoundError:
-    # Streamlit Cloud
     import streamlit as st
 
     AWS_ACCESS_KEY = st.secrets["AWS_ACCESS_KEY"]
     AWS_SECRET_KEY = st.secrets["AWS_SECRET_KEY"]
     AWS_REGION = st.secrets["AWS_REGION"]
-
-try:
-    from aws_config import INSTANCE_ID
-except ModuleNotFoundError:
     INSTANCE_ID = st.secrets["INSTANCE_ID"]
 
 cloudwatch = boto3.client(

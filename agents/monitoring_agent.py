@@ -8,7 +8,9 @@ from cloudwatch_metrics import (
 )
 
 from aws_ec2 import get_instance_status
-from aws_config import INSTANCE_ID
+import streamlit as st
+
+INSTANCE_ID = st.secrets["INSTANCE_ID"]
 
 from ai_prediction import predict_risk
 

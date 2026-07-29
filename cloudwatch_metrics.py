@@ -1,8 +1,11 @@
 import boto3
+import streamlit as st
 from datetime import datetime, timedelta
-from aws_config import *
 
-INSTANCE_ID = "i-0a281c83a51f3a6c4"
+AWS_ACCESS_KEY = st.secrets["AWS_ACCESS_KEY"]
+AWS_SECRET_KEY = st.secrets["AWS_SECRET_KEY"]
+AWS_REGION = st.secrets["AWS_REGION"]
+INSTANCE_ID = st.secrets["INSTANCE_ID"]
 
 cloudwatch = boto3.client(
     "cloudwatch",
