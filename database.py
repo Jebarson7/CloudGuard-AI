@@ -1,6 +1,5 @@
 import sqlite3
 
-# Create the database and table
 def create_database():
     conn = sqlite3.connect("metrics.db")
     cursor = conn.cursor()
@@ -20,7 +19,11 @@ def create_database():
     conn.commit()
     conn.close()
 
-# Function to insert metrics
+
+# 👇 Add this line here
+create_database()
+
+
 def insert_metrics(cpu, memory, network, disk, health_score):
     conn = sqlite3.connect("metrics.db")
     cursor = conn.cursor()
@@ -32,18 +35,3 @@ def insert_metrics(cpu, memory, network, disk, health_score):
 
     conn.commit()
     conn.close()
-
-# Main Program
-if __name__ == "__main__":
-    create_database()
-
-    # Insert one sample record
-    insert_metrics(
-        cpu=45,
-        memory=60,
-        network=120,
-        disk=35,
-        health_score=88
-    )
-
-    print("Database created and sample data inserted successfully!")

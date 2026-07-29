@@ -58,6 +58,10 @@ from openrouter_ai import (
     auto_remediation_ai
 )
 
+from database import create_database
+
+create_database()
+
 st.set_page_config(
     page_title="CloudGuard AI",
     page_icon="☁️",
