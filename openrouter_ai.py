@@ -38,23 +38,32 @@ Provide a short cloud operations recommendation.
 
     return response.choices[0].message.content
 
-def cost_optimizer_ai(cpu, memory, network):
+def cost_optimizer_ai(cpu, memory, network, cost, cost_status):
 
     prompt = f"""
-You are a Cloud FinOps expert.
+You are CloudGuard AI Cost Optimization Agent.
 
-Current Infrastructure Metrics:
-CPU: {cpu}%
-Memory: {memory}%
-Network: {network} KB
+Facts (do not change these):
 
-Analyze:
-1. Whether the EC2 instance is overutilized or underutilized.
-2. Cost optimization opportunities.
-3. Estimated savings percentage.
-4. Recommended AWS actions.
+Monthly Cost: ${cost:.2f}
+Cost Status: {cost_status}
+CPU Usage: {cpu:.2f}%
+Memory Usage: {memory}%
+Network Usage: {network:.2f} KB
 
-Keep the response short and practical.
+IMPORTANT:
+These facts are already verified from AWS Cost Explorer.
+Do NOT contradict them.
+Do NOT mention increasing costs unless Cost Status is HAS_COST.
+
+Your task is ONLY to provide recommendations.
+
+Return exactly this format:
+
+Recommendations:
+• ...
+• ...
+• ...
 """
 
     response = client.chat.completions.create(
@@ -87,6 +96,48 @@ Generate:
 4. Estimated Recovery Time
 
 Keep it short and actionable.
+"""
+
+    response = client.chat.completions.create(
+        model="meta-llama/llama-3.1-8b-instruct",
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    )
+
+    return response.choices[0].message.content
+
+def predictive_failure_ai(cpu, memory, network, status_check):
+
+    prompt = f"""
+You are an AWS Cloud Reliability Engineer.
+
+Analyze these AWS CloudWatch metrics and predict if the infrastructure is likely to fail.
+
+Metrics:
+- CPU Usage: {cpu:.2f}%
+- Memory Usage: {memory:.2f}%
+- Network Usage: {network:.2f} KB
+- EC2 Status Checks Failed: {status_check}
+
+Your task:
+
+1. Predict whether a failure is likely.
+2. Estimate the failure probability (0-100%).
+3. Predict the most likely failure.
+4. Explain why.
+5. Suggest preventive actions.
+
+Return ONLY in this format:
+
+Failure Probability:
+Predicted Failure:
+Severity:
+Reason:
+Recommendation:
 """
 
     response = client.chat.completions.create(

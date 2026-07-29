@@ -1,89 +1,90 @@
 # ☁️ CloudGuard AI
 
-CloudGuard AI is an AI-powered cloud operations monitoring dashboard designed to help cloud engineers monitor infrastructure, analyze risks, optimize costs, and respond to incidents efficiently. The platform integrates AWS CloudWatch metrics with AI-driven insights to provide a centralized cloud operations experience.
-
-## 🚀 Problem Statement
-
-Managing cloud infrastructure often requires multiple monitoring tools and manual analysis of metrics. Identifying performance issues, optimizing costs, and responding to incidents can be time-consuming.
-
-CloudGuard AI simplifies cloud operations by combining real-time AWS monitoring, AI-powered recommendations, anomaly detection, cost optimization, and incident simulation into a single dashboard.
+CloudGuard AI is an AI-powered Multi-Agent Cloud Monitoring and AIOps platform that monitors AWS Cloud resources in real time, predicts failures, detects anomalies, analyzes incidents, and provides intelligent recommendations using Large Language Models (LLMs).
 
 ---
 
-## ✨ Key Features
+## 🚀 Features
 
-* ✅ Real AWS CloudWatch CPU Monitoring
-* ✅ Real AWS CloudWatch Network Monitoring
-* ✅ AI-Powered Infrastructure Assistant
-* ✅ AI Cost Optimization Advisor
-* ✅ AI Auto-Remediation Engine
-* ✅ AI Anomaly Detection
-* ✅ AI Incident Simulator
-* ✅ Risk Prediction Engine
-* ✅ System Health Score Analysis
-* ✅ Incident Report Generation
-* ✅ Interactive Dashboard with Streamlit
+- 📊 Real-time AWS CloudWatch Monitoring
+- 🤖 11-Agent Multi-Agent AI Architecture
+- 📈 Predictive Failure Detection
+- 🚨 Anomaly Detection
+- 🧠 AI-Based Root Cause Analysis
+- 💡 Intelligent Recommendations using Llama 3.1
+- 📋 Incident Report Generation
+- 💰 AWS Cost Optimization
+- 📉 Health Score Analysis
+- 📚 Historical Metrics Storage
+- 📊 Interactive Streamlit Dashboard
 
 ---
 
-## 🏗 Architecture
+## 🤖 Multi-Agent Architecture
 
-AWS EC2 Instances
-↓
-AWS CloudWatch Metrics
-↓
-CloudGuard AI Dashboard
-↓
-OpenRouter AI Integration
-↓
+CloudGuard AI consists of 11 specialized AI agents:
 
-* AI Infrastructure Analysis
-* Cost Optimization Recommendations
-* Auto-Remediation Plans
-* Incident Simulation
-* Report Generation
+- Monitoring Agent
+- Parser Agent
+- Predictive Agent
+- Anomaly Agent
+- Diagnosis Agent
+- Reasoning Agent
+- Planning Agent
+- Action Agent
+- Approval Agent
+- Memory Agent
+- Report Agent
+
+These agents are coordinated by an **Orchestrator Agent**, enabling intelligent and autonomous cloud operations.
 
 ---
 
 ## 🛠 Technologies Used
 
-* Python
-* Streamlit
-* Plotly
-* Pandas
-* AWS CloudWatch
-* Boto3
-* OpenRouter AI
-* Git & GitHub
+- Python
+- Streamlit
+- AWS CloudWatch
+- Boto3
+- SQLite
+- Plotly
+- Pandas
+- Scikit-learn
+- OpenRouter API
+- Meta Llama 3.1
+- Random Forest
+- Isolation Forest
 
 ---
 
-## 📸 Screenshots
+## 📂 Project Structure
 
-### Dashboard Overview
-
-(Add dashboard screenshot here)
-
-### AI Auto-Remediation Engine
-
-(Add screenshot here)
-
-### Incident Simulator
-
-(Add screenshot here)
-
-### Cost Optimization Advisor
-
-(Add screenshot here)
+```text
+CloudGuardAI/
+│
+├── agents/
+├── tests/
+├── app.py
+├── openrouter_ai.py
+├── aws_monitor.py
+├── database.py
+├── real_database.py
+├── requirements.txt
+└── README.md
+```
 
 ---
 
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/Jebarson7/CloudGuard-AI.git
+git clone <repository-url>
+cd CloudGuardAI
 
-cd CloudGuard-AI
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
 
 pip install -r requirements.txt
 
@@ -92,31 +93,34 @@ streamlit run app.py
 
 ---
 
-## 🌐 Live Demo
+## 📊 Dashboard
 
-https://cloudguard-ai-cqvxt2bjlcm6gwjoeiczsx.streamlit.app/
+The dashboard provides:
+
+- Real-time Cloud Metrics
+- Health Score
+- Failure Prediction
+- AI Recommendations
+- Anomaly Detection
+- Cost Insights
+- Historical Analysis
 
 ---
 
-## 🔮 Future Scope
+## 🎯 Future Enhancements
 
-* Multi-cloud monitoring (AWS, Azure, GCP)
-* Real-time machine learning anomaly detection
-* Automated remediation execution
-* Slack and Email alerts
-* Predictive scaling recommendations
-* Historical incident analytics
+- Kubernetes Monitoring
+- Multi-Cloud Support (AWS, Azure, GCP)
+- Automatic Incident Remediation
+- Slack & Microsoft Teams Integration
+- Email and SMS Alerts
 
 ---
 
 ## 👨‍💻 Author
 
 **Jebarson E**
+
 Computer and Communication Engineering (CCE)
+
 Sri Eshwar College of Engineering
-
----
-
-### CloudGuard AI v3.0
-
-AI-Powered Autonomous Cloud Operations Assistant

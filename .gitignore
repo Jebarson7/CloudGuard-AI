@@ -4,3 +4,10 @@ __pycache__/
 .env
 aws_config.py
 .aws_credentials.txt
+activity_log.json
+memory.json
+
+*.pem
+*accessKeys.csv
+*.db
+*.log
