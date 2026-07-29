@@ -1,10 +1,15 @@
 import boto3
 from datetime import date
 
-from aws_config import (
-    AWS_ACCESS_KEY,
-    AWS_SECRET_KEY
-)
+try:
+    # Local development (VS Code)
+    from aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY
+except ModuleNotFoundError:
+    # Streamlit Cloud
+    import streamlit as st
+
+    AWS_ACCESS_KEY = st.secrets["AWS_ACCESS_KEY"]
+    AWS_SECRET_KEY = st.secrets["AWS_SECRET_KEY"]
 
 cost_explorer = boto3.client(
     "ce",

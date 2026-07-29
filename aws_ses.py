@@ -1,10 +1,15 @@
 import boto3
 
-from aws_config import (
-    AWS_ACCESS_KEY,
-    AWS_SECRET_KEY,
-    AWS_REGION
-)
+try:
+    # Local development (VS Code)
+    from aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
+except ModuleNotFoundError:
+    # Streamlit Cloud
+    import streamlit as st
+
+    AWS_ACCESS_KEY = st.secrets["AWS_ACCESS_KEY"]
+    AWS_SECRET_KEY = st.secrets["AWS_SECRET_KEY"]
+    AWS_REGION = st.secrets["AWS_REGION"]
 
 ses = boto3.client(
     "ses",

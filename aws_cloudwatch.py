@@ -1,10 +1,9 @@
 import boto3
+import streamlit as st
 
-from aws_config import (
-    AWS_ACCESS_KEY,
-    AWS_SECRET_KEY,
-    AWS_REGION
-)
+AWS_ACCESS_KEY = st.secrets["AWS_ACCESS_KEY"]
+AWS_SECRET_KEY = st.secrets["AWS_SECRET_KEY"]
+AWS_REGION = st.secrets["AWS_REGION"]
 
 cloudwatch = boto3.client(
     "cloudwatch",
