@@ -1,13 +1,22 @@
+# Virtual Environment
 venv/
+
+# Python Cache
 __pycache__/
 *.pyc
-.env
-aws_config.py
-.aws_credentials.txt
-activity_log.json
-memory.json
 
+# Environment & Secrets
+.env
+config/
 *.pem
 *accessKeys.csv
+
+# Databases
 *.db
+
+# Logs
 *.log
+activity_log.json
+
+# Memory Files
+memory.json
