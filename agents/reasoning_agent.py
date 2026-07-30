@@ -13,11 +13,25 @@ def analyze(metrics):
     instance_state = metrics["instance_state"]
 
 
-    # EC2 not running
-    if instance_state != "running":
-
+    if instance_state == "stopped":
         return {
-            "scenario": "INSTANCE_OFFLINE",
+            "scenario": "INSTANCE_STOPPED",
+            "severity": "MEDIUM",
+            "reason": "The EC2 instance is stopped and is not serving requests.",
+            "confidence": 99
+        }
+
+    if instance_state == "terminated":
+        return {
+            "scenario": "INSTANCE_TERMINATED",
+            "severity": "HIGH",
+            "reason": "The EC2 instance has been terminated.",
+            "confidence": 99
+        }
+
+    if instance_state != "running":
+        return {
+            "scenario": "INSTANCE_UNAVAILABLE",
             "severity": "HIGH",
             "reason": f"EC2 instance is currently {instance_state}.",
             "confidence": 99
