@@ -32,6 +32,14 @@ def collect_metrics():
 
     risk = predict_risk(cpu, memory, network)
 
+    # Override risk based on EC2 state
+    if instance_state == "stopped":
+        risk = "MEDIUM RISK"
+    elif instance_state == "terminated":
+        risk = "HIGH RISK"
+    elif status_check > 0:
+        risk = "HIGH RISK"
+
     cpu_history = get_cpu_history()
 
     network_history = get_network_history()
