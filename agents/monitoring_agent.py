@@ -12,7 +12,7 @@ import streamlit as st
 
 INSTANCE_ID = st.secrets["INSTANCE_ID"]
 
-from ai_prediction import predict_risk
+from utils.ai_prediction import predict_risk
 
 import random
 
