@@ -1,4 +1,4 @@
-from real_database import insert_real_metrics
+from database.real_database import insert_real_metrics
 
 def save_real_metrics(metrics, health_score):
 
