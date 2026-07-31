@@ -6,7 +6,7 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 from streamlit_autorefresh import st_autorefresh
-ffrom utils.ai_advisor import generate_advice
+from utils.ai_advisor import generate_advice
 
 from aws.aws_cloudwatch import create_cpu_alarm
 from utils.email_service import send_email
