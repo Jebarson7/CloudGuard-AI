@@ -1,6 +1,6 @@
 import joblib
 
-model = joblib.load("model.pkl")
+model = joblib.load("models/model.pkl")
 
 def predict_future_cpu(
         cpu,

@@ -1,6 +1,6 @@
 import joblib
 
-model = joblib.load("anomaly_model.pkl")
+model = joblib.load("models/anomaly_model.pkl")
 
 def detect_anomaly(cpu, memory, network, disk, health_score):
 

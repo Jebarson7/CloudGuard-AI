@@ -1,6 +1,6 @@
 import joblib
 
-model = joblib.load("failure_model.pkl")
+model = joblib.load("models/failure_model.pkl")
 
 def predict_failure(cpu, memory, network, disk, health_score):
 
