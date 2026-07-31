@@ -1,4 +1,4 @@
-from cloudwatch_metrics import (
+from aws.cloudwatch_metrics import (
     get_cpu_usage,
     get_network_in,
     get_network_out,
