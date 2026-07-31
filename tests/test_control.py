@@ -1,4 +1,4 @@
-from aws_ec2 import stop_instance
+from aws.aws_ec2 import stop_instance
 
 INSTANCE_ID = "i-0a281c83a51f3a6c4"
 

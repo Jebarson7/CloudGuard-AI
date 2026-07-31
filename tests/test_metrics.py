@@ -1,4 +1,4 @@
-from cloudwatch_metrics import *
+from aws.cloudwatch_metrics import *
 
 print("CPU:", get_cpu_usage(), "%")
 print("Network In:", get_network_in(), "KB")

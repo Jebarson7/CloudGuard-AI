@@ -3,7 +3,7 @@ from datetime import date
 
 try:
     # Local development (VS Code)
-    from aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY
+    from aws.aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY
 except ModuleNotFoundError:
     # Streamlit Cloud
     import streamlit as st

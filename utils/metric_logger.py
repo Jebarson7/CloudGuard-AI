@@ -1,4 +1,4 @@
-from database import insert_metrics
+from database.database import insert_metrics
 
 def save_metrics(metrics, health_score):
     insert_metrics(

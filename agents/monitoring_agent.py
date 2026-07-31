@@ -7,7 +7,7 @@ from cloudwatch_metrics import (
     get_network_history
 )
 
-from aws_ec2 import get_instance_status
+from aws.aws_ec2 import get_instance_status
 import streamlit as st
 
 INSTANCE_ID = st.secrets["INSTANCE_ID"]

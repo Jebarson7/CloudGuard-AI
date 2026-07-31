@@ -1,4 +1,4 @@
-from aws_ses import send_email
+from aws.aws_ses import send_email
 
 response = send_email(
 

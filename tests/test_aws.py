@@ -1,5 +1,5 @@
 import boto3
-from aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
+from aws.aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
 
 ec2 = boto3.client(
     "ec2",

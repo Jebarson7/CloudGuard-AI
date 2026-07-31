@@ -3,7 +3,7 @@ import time
 
 try:
     # Local development (VS Code)
-    from aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
+    from aws.aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
 except ModuleNotFoundError:
     # Streamlit Cloud
     import streamlit as st

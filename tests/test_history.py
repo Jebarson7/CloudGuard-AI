@@ -1,4 +1,4 @@
-from cloudwatch_metrics import get_cpu_history
+from aws.cloudwatch_metrics import get_cpu_history
 
 data = get_cpu_history()
 

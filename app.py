@@ -6,26 +6,27 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 from streamlit_autorefresh import st_autorefresh
-from ai_advisor import generate_advice
-from aws_cloudwatch import create_cpu_alarm
-from email_service import send_email
-from aws_ses import send_email
-from report_generator import generate_report
-from cost_optimizer import cost_advice
-from metric_logger import save_metrics
-from predict import predict_future_cpu
-from detect_anomaly import detect_anomaly
-from failure_predict import predict_failure
-from real_metric_logger import save_real_metrics
+ffrom utils.ai_advisor import generate_advice
+
+from aws.aws_cloudwatch import create_cpu_alarm
+from utils.email_service import send_email
+from aws.aws_ses import send_email
+from utils.report_generator import generate_report
+from utils.cost_optimizer import cost_advice
+from utils.metric_logger import save_metrics
+from utils.predict import predict_future_cpu
+from utils.detect_anomaly import detect_anomaly
+from utils.failure_predict import predict_failure
+from database.real_metric_logger import save_real_metrics
 
 from agents.orchestrator import run_workflow
 
-from aws_cost import (
+from aws.aws_cost import (
     get_cost_summary,
     get_cost_by_service
 )
 
-from aws_ec2 import (
+from aws.aws_ec2 import (
     get_instance_status,
     start_instance,
     stop_instance,
@@ -33,32 +34,32 @@ from aws_ec2 import (
     get_instance_details
 )
 
-from activity_logger import (
+from utils.activity_logger import (
     log_activity,
     get_logs
 )
 
-from aws_cloudwatch import (
+from aws.aws_cloudwatch import (
     create_cpu_alarm,
     list_alarms,
     delete_alarm,
     get_alarm_status
 )
 
-from cloudwatch_metrics import (
+from aws.cloudwatch_metrics import (
     get_cpu_usage,
     get_network_in,
     get_cpu_history,
     get_network_history
 )
 
-from openrouter_ai import (
+from utils.openrouter_ai import (
     ask_ai,
     cost_optimizer_ai,
     auto_remediation_ai
 )
 
-from database import create_database
+from database.database import create_database
 
 create_database()
 

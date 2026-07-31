@@ -1,4 +1,4 @@
-from aws_cost import get_cost_by_service
+from aws.aws_cost import get_cost_by_service
 
 services = get_cost_by_service()
 

@@ -1,5 +1,5 @@
 import random
-from database import insert_metrics
+from database.database import insert_metrics
 
 # Generate 500 realistic historical records
 for _ in range(500):

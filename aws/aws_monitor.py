@@ -2,7 +2,7 @@ import boto3
 from datetime import datetime, timedelta
 
 try:
-    from aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION, INSTANCE_ID
+    from aws.aws_config import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION, INSTANCE_ID
 except ModuleNotFoundError:
     import streamlit as st
 

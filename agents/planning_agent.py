@@ -1,5 +1,5 @@
 import re
-from openrouter_ai import ask_ai
+from utils.openrouter_ai import ask_ai
 
 def generate_plan(metrics, scenario):
 

@@ -1,4 +1,4 @@
-from email_service import send_email
+from utils.email_service import send_email
 
 send_email(
     "CloudGuard AI Test",

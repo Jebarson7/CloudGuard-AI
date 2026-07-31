@@ -1,4 +1,4 @@
-from openrouter_ai import predictive_failure_ai
+from utils.openrouter_ai import predictive_failure_ai
 
 def predict_failure(metrics):
     """

@@ -1,4 +1,4 @@
-from openrouter_ai import ask_ai
+from utils.openrouter_ai import ask_ai
 
 answer = ask_ai(
     "Is my infrastructure healthy?",

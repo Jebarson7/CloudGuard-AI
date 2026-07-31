@@ -1,4 +1,4 @@
-from openrouter_ai import ask_ai
+from utils.openrouter_ai import ask_ai
 
 def diagnose(metrics):
 

@@ -1,4 +1,4 @@
-from aws_cloudwatch import get_alarm_status
+from aws.aws_cloudwatch import get_alarm_status
 
 alarms = get_alarm_status()
 
